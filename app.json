@@ -26,7 +26,6 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router",
       [
         "expo-splash-screen",
         {
@@ -37,6 +36,12 @@
           "dark": {
             "backgroundColor": "#000000"
           }
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "แอปนี้ต้องการเข้าถึงตำแหน่งของคุณเพื่อแสดงข้อมูลสภาพอากาศในพื้นที่ของคุณ"
         }
       ]
     ],
