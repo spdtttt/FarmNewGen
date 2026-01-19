@@ -206,10 +206,3 @@ console.log(res);
 ยังไม่มีไฟล์ LICENSE ใน repo — เลือก license ที่ต้องการแล้วเพิ่มไฟล์ LICENSE (เช่น MIT) หากต้องการเปิดซอร์ส
 
 ---
-
-ถ้าต้องการ ผมช่วย:
-- ย้ายค่า Supabase/Keys ไปยังตัวแปรสภาพแวดล้อมอย่างปลอดภัย
-- เพิ่มตัวอย่าง unit test สำหรับฟังก์ชัน calculateFertilizer
-- ปรับ app.config.js ให้ส่งค่า extra (Constants.expoConfig.extra) จาก .env เพื่อให้ Expo อ่านค่าได้โดยตรง
-
-ขอบคุณ — ถ้ามีจุดที่ต้องการให้ขยาย (เช่น เพิ่มส่วน API reference, ตัวอย่าง contribution workflow หรือ template PR) แจ้งได้เลยครับ
