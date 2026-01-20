@@ -288,6 +288,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     color: colors.textPrimary,
+    marginBottom: 6,
   },
   refreshButton: {
     padding: 4,
@@ -393,8 +394,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 20,
     borderRadius: 16,
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.2)',
   },
   fertilizerIconContainer: {
     backgroundColor: '#fff',

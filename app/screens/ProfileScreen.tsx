@@ -132,7 +132,7 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
     <View style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>โปรไฟล์ 👤</Text>
+          <Text style={styles.headerTitle}>โปรไฟล์</Text>
           <TouchableOpacity onPress={handleSignOut} style={styles.logoutButton}>
             <Ionicons name="log-out-outline" size={24} color={colors.error} />
           </TouchableOpacity>

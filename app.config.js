@@ -47,6 +47,9 @@ module.exports = {
             'แอปนี้ต้องการเข้าถึงตำแหน่งของคุณเพื่อแสดงข้อมูลสภาพอากาศในพื้นที่ของคุณ',
         },
       ],
+      [
+        "expo-router"
+      ]
     ],
     experiments: {
       typedRoutes: true,

@@ -1,9 +1,10 @@
-import { Ionicons } from '@expo/vector-icons';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
+import { Ionicons } from "@expo/vector-icons";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import React, { useState } from "react";
 import {
   ActivityIndicator,
   Alert,
+  Image,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -12,15 +13,15 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { colors } from '../constants/colors';
-import { useAuth } from '../contexts/AuthContext';
-import { AuthStackParamList } from '../navigation/types';
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { colors } from "../constants/colors";
+import { useAuth } from "../contexts/AuthContext";
+import { AuthStackParamList } from "../navigation/types";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
   AuthStackParamList,
-  'Login'
+  "Login"
 >;
 
 interface Props {
@@ -28,15 +29,15 @@ interface Props {
 }
 
 const LoginScreen: React.FC<Props> = ({ navigation }) => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const { signIn } = useAuth();
 
   const handleLogin = async (): Promise<void> => {
     if (!email || !password) {
-      Alert.alert('ข้อผิดพลาด', 'กรุณากรอกอีเมลและรหัสผ่าน');
+      Alert.alert("ข้อผิดพลาด", "กรุณากรอกอีเมลและรหัสผ่าน");
       return;
     }
 
@@ -45,7 +46,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
     setIsLoading(false);
 
     if (error) {
-      Alert.alert('เข้าสู่ระบบไม่สำเร็จ', "ตรวจสอบอีเมลและรหัสผ่านอีกครั้ง");
+      Alert.alert("เข้าสู่ระบบไม่สำเร็จ", "ตรวจสอบอีเมลและรหัสผ่านอีกครั้ง");
     }
   };
 
@@ -53,7 +54,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
     <View style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
         <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={styles.keyboardView}
         >
           <ScrollView
@@ -61,26 +62,27 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
           >
-
             {/* Logo area */}
             <View style={styles.logoContainer}>
-              <View style={styles.logoCircle}>
-                <View style={styles.logoInnerCircle} />
-                <Text style={styles.logoIcon}>🌾</Text>
-              </View>
+              <Image
+                source={require("@/assets/images/icon.png")}
+                style={[styles.logoImage, styles.roundedSquareImage]}
+              />
             </View>
 
             {/* Welcome Text */}
             <Text style={styles.welcomeText}>ยินดีต้อนรับ</Text>
-            <Text style={styles.subtitleText}>
-              Sign In to Farm New Gen
-            </Text>
+            <Text style={styles.subtitleText}>Sign In to Farm New Gen</Text>
 
             {/* Email Input */}
             <View style={styles.inputContainer}>
               <View style={styles.inputWrapper}>
                 <View style={styles.iconBox}>
-                  <Ionicons name="mail-outline" size={20} color={colors.primary} />
+                  <Ionicons
+                    name="mail-outline"
+                    size={20}
+                    color={colors.primary}
+                  />
                 </View>
                 <TextInput
                   style={styles.input}
@@ -99,7 +101,11 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
             <View style={styles.inputContainer}>
               <View style={styles.inputWrapper}>
                 <View style={styles.iconBox}>
-                  <Ionicons name="lock-closed-outline" size={20} color={colors.primary} />
+                  <Ionicons
+                    name="lock-closed-outline"
+                    size={20}
+                    color={colors.primary}
+                  />
                 </View>
                 <TextInput
                   style={styles.input}
@@ -115,7 +121,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
                   onPress={() => setIsPasswordVisible(!isPasswordVisible)}
                 >
                   <Ionicons
-                    name={isPasswordVisible ? 'eye-off-outline' : 'eye-outline'}
+                    name={isPasswordVisible ? "eye-off-outline" : "eye-outline"}
                     size={20}
                     color={colors.textSecondary}
                   />
@@ -126,7 +132,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
             {/* Forgot Password */}
             <TouchableOpacity
               style={styles.forgotPassword}
-              onPress={() => navigation.navigate('ForgotPassword')}
+              onPress={() => navigation.navigate("ForgotPassword")}
             >
               <Text style={styles.forgotPasswordText}>ลืมรหัสผ่าน?</Text>
             </TouchableOpacity>
@@ -159,12 +165,16 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
             <TouchableOpacity
               style={styles.registerButton}
               activeOpacity={0.8}
-              onPress={() => navigation.navigate('Register')}
+              onPress={() => navigation.navigate("Register")}
             >
-              <Ionicons name="person-add-outline" size={20} color={colors.primary} style={{ marginRight: 8 }} />
+              <Ionicons
+                name="person-add-outline"
+                size={20}
+                color={colors.primary}
+                style={{ marginRight: 8 }}
+              />
               <Text style={styles.registerButtonText}>สมัครสมาชิก</Text>
             </TouchableOpacity>
-
           </ScrollView>
         </KeyboardAvoidingView>
       </SafeAreaView>
@@ -186,51 +196,36 @@ const styles = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
     padding: 30,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   // Logo Styles
   logoContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     marginBottom: 32,
     marginTop: 20,
   },
-  logoCircle: {
+  logoImage: {
     width: 120,
     height: 120,
-    borderRadius: 60,
-    backgroundColor: colors.primary,
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: colors.primary,
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.3,
-    shadowRadius: 20,
-    elevation: 10,
+    resizeMode: "contain",
   },
-  logoInnerCircle: {
-    position: 'absolute',
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
-  },
-  logoIcon: {
-    fontSize: 60,
+  roundedSquareImage: {
+    borderRadius: '50%',
   },
 
   // Text Styles
   welcomeText: {
     fontSize: 28,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: colors.textPrimary,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 8,
     letterSpacing: -0.5,
   },
   subtitleText: {
     fontSize: 16,
     color: colors.textSecondary,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 40,
     lineHeight: 24,
   },
@@ -240,9 +235,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   inputWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fff',
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#fff",
     borderRadius: 16,
     shadowColor: colors.primary,
     shadowOffset: { width: 0, height: 4 },
@@ -250,13 +245,13 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 4,
     borderWidth: 1,
-    borderColor: 'transparent',
+    borderColor: "transparent",
   },
   iconBox: {
     width: 50,
     height: 56,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     borderTopLeftRadius: 16,
     borderBottomLeftRadius: 16,
   },
@@ -270,19 +265,19 @@ const styles = StyleSheet.create({
   visibilityButton: {
     width: 50,
     height: 56,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   // Forgot Password
   forgotPassword: {
-    alignSelf: 'flex-end',
+    alignSelf: "flex-end",
     marginBottom: 30,
     padding: 8,
   },
   forgotPasswordText: {
     color: colors.primary,
-    fontWeight: '600',
+    fontWeight: "600",
     fontSize: 14,
   },
 
@@ -291,8 +286,8 @@ const styles = StyleSheet.create({
     height: 56,
     backgroundColor: colors.primary,
     borderRadius: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     shadowColor: colors.primary,
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.3,
@@ -305,21 +300,21 @@ const styles = StyleSheet.create({
     backgroundColor: colors.secondary,
   },
   buttonContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 8,
   },
   loginButtonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     letterSpacing: 0.5,
   },
 
   // Divider
   divider: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 24,
   },
   dividerLine: {
@@ -330,25 +325,25 @@ const styles = StyleSheet.create({
   dividerText: {
     marginHorizontal: 16,
     color: colors.textSecondary,
-    fontWeight: '500',
+    fontWeight: "500",
     fontSize: 14,
   },
 
   // Register Button
   registerButton: {
     height: 56,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderRadius: 16,
     borderWidth: 2,
     borderColor: colors.primary,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   registerButtonText: {
     color: colors.primary,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     letterSpacing: 0.5,
   },
 });
